@@ -16,7 +16,7 @@ public class Suma
 {
     public static int Sumar(int a, int b)
     {
-        return a + b;
+        return a - b;
     }
 }
 
