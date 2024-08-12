@@ -242,7 +242,7 @@ pero ahora tendrá otros parámetros.
   git checkout <nombre-rama>
   ````
 
-<!-- ## 3. Hacer *reset* a un estado anterior
+## 3. Hacer *reset* a un estado anterior
 
 Hay otra forma de deshacer los cambios que histe en el paso [1. Revertir un
 cambio incorrecto](#1-revertir-un-cambio-incorrecto). Para mostrarlo vamos a
@@ -319,4 +319,4 @@ git reset --hard <id-del-commit-anterior>
 git checkout feature-addition
 git rebase master
 git push -f origin feature-addition
-``` -->
+```
