@@ -46,10 +46,10 @@ revert`](https://git-scm.com/docs/git-revert).
   ```
 
   > Recuerda que `<nombre-rama>` es uno de los siguientes:
-  > - feature-addition
-  > - feature-subtraction
-  > - feature-multiplication
-  > - feature-division
+  > - suma
+  > - resta
+  > - multiplica
+  > - divide
 
   En caso de que la rama no sea la tuya, cámbiate de rama con `git checkout`
   seguido del nombre de la rama.
@@ -110,7 +110,7 @@ revert`](https://git-scm.com/docs/git-revert).
   La salida luce similar a la siguiente, tú vas a ver más texto:
 
   ```bash
-  commit 64c8f1a9812d7ade807430e10dd36d933dd35b7f (HEAD -> feature-addition, origin/feature-addition)
+  commit 64c8f1a9812d7ade807430e10dd36d933dd35b7f (HEAD -> suma, origin/suma)
   Author: Luis Suárez <lucho@nacional.com>
   Date:   Mon Jul 29 10:15:30 2024 +0200
 
@@ -240,7 +240,7 @@ pero ahora tendrá otros parámetros.
 
   > [!NOTE]
   > A menos que en este estado crees una rama y hagas algún *commit* en ella, lo
-  > que estás viendo es temporal, es decir, cuando te cambiar a otra rama
+  > que estás viendo es temporal, es decir, cuando te cambias a otra rama
   > volverá a lo que había en esa rama.
 
   Vuelve a la última versión ejecutando el siguiente comando, donde
@@ -359,7 +359,7 @@ hacer más cambios en nuestro programa.
 
   Verás una salida similar a esta:
 
-  ```bash
+  ```text
   On branch ...
   Changes not staged for commit:
     (use "git add <file>..." to update what will be committed)
@@ -404,7 +404,7 @@ hacer más cambios en nuestro programa.
 En este paso vamos a ver qué cómo puedes modificar el último *commit*.
 
 > [!WARNING]
-> Idealmente puedes modificar el último *commit* con el comando `commit --amend`
+> Idealmente debes modificar el último *commit* con el comando `commit --amend`
 > antes de enviar tus cambios al repositorio remoto con `git push`. Si el
 > *commit* ya está en el repositorio remoto, no te recomandamos usar `commit
 > --amend`.
@@ -475,7 +475,7 @@ En este paso vamos a ver qué cómo puedes modificar el último *commit*.
   <kbd>Q</kbd> para salir.
 
 - Ejecuta ahora los siguientes comandos, para agregar el archivo `Program.cs` al
-  último *commit*:
+  último *commit*, y quitar el archivo `file.txt`:
 
   ```bash
   git rm --cached file.txt
@@ -483,11 +483,18 @@ En este paso vamos a ver qué cómo puedes modificar el último *commit*.
   git commit --amend
   ````
 
-  Esto agregará el archivo `Program.cs` al *commit* y quitará el archivo
-  `file.txt`. Puedes confirmarlo haciendo `git status` para ver que `file.txt`
-  sigue en el working folder y `git log` para ver los mensajes de los últimos
-  *commit*. Si estás usando `vi` como editor para Git -verás `:` al final de la
-  lista de *commits*-, recuerda usar <kbd>Q</kbd> para salir.
+  Git puede mostrar un editor de texto; si estás usando `vi` recuerda que debes
+  usar <kbd>:</kbd>, seguido de <kbd>Q</kbd>, para salir de `vi`. Podrás ver que
+  el mensaje del último *commit* no ha cambiado -aunque podrías cambiar el
+  mensaje en el editor de texto-,  así como el resultado del *commit*
+  modificado.
+
+  El comando `git commit --amend` agregará el archivo `Program.cs` al *commit* y
+  quitará el archivo `file.txt`. Puedes confirmarlo haciendo `git status` para
+  ver que `file.txt` sigue en el working folder y `git log` para ver los
+  mensajes de los últimos *commit*. Si estás usando `vi` como editor para Git
+  -verás `:` al final de la lista de *commits*-, recuerda usar <kbd>Q</kbd> para
+  salir.
 
 - Borra el archivo `file.txt`. El *working folder* no debería tener ninguna
   modificación. Puedes confirmarlo con `git status`.
