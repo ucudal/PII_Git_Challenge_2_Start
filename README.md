@@ -15,8 +15,9 @@ Continuar trabajando con la aplicación de calculadora simple en C# donde cada
 estudiante del equipo contribuyó con una operación diferente (suma, resta,
 multiplicación, división). Practicarás los siguientes comandos de Git:
 [log](https://git-scm.com/docs/git-log),
-[revert](https://git-scm.com/docs/git-revert), y
-[checkout](https://git-scm.com/docs/git-checkout).
+[revert](https://git-scm.com/docs/git-revert),
+[checkout](https://git-scm.com/docs/git-checkout) y
+[reset](https://git-scm.com/docs/git-reset).
 
 Asumimos que has completado el [desafío #1 de
 Git](https://github.com/ucudal/PII_Git_Challenge_1_Start). Deberás continuar
@@ -26,8 +27,8 @@ trabajando en el repositorio creado en ese ejercicio.
 
 ## 1. Revertir un cambio incorrecto
 
-En este paso veremos qué puedes hacer cuando sin darte cuenta haces un cambio
-incorrecto y quieres volver atrás; con Git es posible usando [`git
+En este paso veremos qué puedes hacer cuando, sin darte cuenta, haces *commit*
+de un cambio incorrecto y quieres volver atrás; con Git es posible usando [`git
 revert`](https://git-scm.com/docs/git-revert).
 
 - Primero confirma que estás en tu rama de trabajo y que no hay modificaciones
@@ -53,10 +54,9 @@ revert`](https://git-scm.com/docs/git-revert).
   En caso de que la rama no sea la tuya, cámbiate de rama con `git checkout`
   seguido del nombre de la rama.
 
-- Introduce un cambio incorrecto en la clase que has implementado: retorna `0`
-  como resultado de la operación.
-
-  Por ejemplo, si la operación fuera la suma, el código debería quedar así:
+- Introduce un cambio incorrecto en la clase que has implementado: por ejemplo,
+  retorna `0` como resultado de la operación; si la operación fuera la suma, el
+  código debería quedar así:
 
   ```csharp
   public class Addition
@@ -119,11 +119,11 @@ revert`](https://git-scm.com/docs/git-revert).
 
   Este texto no aparece directamente en la consola, sino en un editor de texto
   llamado [`vi`](https://en.wikipedia.org/wiki/Vi_(text_editor)). Git muestra la
-  lista en el editor `vi` para que puedas recorrerla fácilmente presionando
-  <kbd>↑</kbd> y <kbd>↓</kbd> para moverte hacia el inicio o el final
+  lista en el editor `vi`, para que puedas recorrerla fácilmente presionando
+  <kbd>↑</kbd> y <kbd>↓</kbd> para moverte hacia el inicio o el final,
   respectivamente.
 
-  Utiliza el mouse para seleccionar el `<commit-id>`, en el ejemplo
+  Utiliza el *mouse* para seleccionar el `<commit-id>`, en el ejemplo
   `64c8f1a9812d7ade807430e10dd36d933dd35b7f`; luego copia el texto al
   portapapeles.
 
@@ -144,11 +144,11 @@ revert`](https://git-scm.com/docs/git-revert).
   > git config core.editor rider
   >```
 
-- Deshace los cambios usando [git revert](https://git-scm.com/docs/git-revert).
-  Este comando revierte los cambios realizados en el *commit* indicado y
-  registra un nuevo *commit*. Ejecuta el siguiene comando, reemplazando
-  `<commit-id>` por el que copiaste anteriormente, y `<nombre-rama>` por la rama
-  en la que vienes trabajando.
+- Deshace los cambios usando [git revert](https://git-scm.com/docs/git-revert),
+  seguido del `<commit-id>`. Este comando deshace los cambios realizados en el
+  *commit* indicado y registra un nuevo *commit*. Ejecuta el siguiene comando,
+  reemplazando `<commit-id>` por el que copiaste anteriormente, y
+  `<nombre-rama>` por la rama en la que vienes trabajando.
 
   ```bash
   git revert <commit-id>
@@ -206,7 +206,7 @@ pero ahora tendrá otros parámetros.
 
   Git muestra un mensaje similar al siguiente:
 
-  ```
+  ```text
   Note: switching to <commit-id>.
 
   You are in 'detached HEAD' state. You can look around, make experimental
@@ -228,12 +228,20 @@ pero ahora tendrá otros parámetros.
   ```
 
   > [!TIP]
-  > `Detached head` significa que `HEAD` apunta a un *commit*  específico y no a
-  > una rama. Mira [este link](https://git-scm.com/docs/git-checkout#_detached_head)
-  > para obtener más información.
+  > `HEAD` es lo que usa Git para identificar "el *commit*  donde estás
+  > trabajando ahora mismo". Habitualmente `HEAD` apunta a un *commit* en la
+  > rama actual. `Detached head` significa que `HEAD` apunta a un *commit*
+  > específico en ninguna rama. Mira [este
+  > link](https://git-scm.com/docs/git-checkout#_detached_head) para obtener más
+  > información.
 
   Examina el código para confirmar que estás viendo la versión inicial antes de
   que hicieras tus primeros cambios.
+
+  > [!NOTE]
+  > A menos que en este estado crees una rama y hagas algún *commit* en ella, lo
+  > que estás viendo es temporal, es decir, cuando te cambiar a otra rama
+  > volverá a lo que había en esa rama.
 
   Vuelve a la última versión ejecutando el siguiente comando, donde
   `<nombre-rama>` es el nombre de la rama en la que venías trabajando:
@@ -290,33 +298,196 @@ hacer más cambios en nuestro programa.
   ```
 
 - Supongamos que elevar un número al cuadradado no es una operación para nuestra
-  calculadora simple sino para una calculadora científica. Tenemos que eliminar
+  calculadora simple, sino para una calculadora científica. Tenemos que eliminar
   los dos últimos cambios. Asumamos a efectos de este ejercicio que queremos
   volver a la situación anterior a agregar estos dos últimos cambios. Podemos
-  hacerlo  con [git reset](https://git-scm.com/docs/git-reset).
+  hacerlo  con [git reset](https://git-scm.com/docs/git-reset), seguido de una
+  referencia a un *commit*.
+
+  > [!NOTE]
+  > Para este comando, aunque también para otros, el parámetro que indica el
+  > *commit* al que quieres volver, puede ser uno de los siguientes: `HEAD~1`
+  > referencia un *commit* antes del actual, digamos, el padre; `HEAD~2`
+  > referencia dos *commit* antes del actual, digamos, el abuelo; y así
+  > sucesivamente. Existen otras referencias, pero con que conozcas estas
+  > alcanza por ahora.
+
+  > [!TIP]
+  > Recuerda que `HEAD` es lo que usa Git para identificar "el *commit*  donde
+  > estás trabajando ahora mismo".
 
   Este comando tiene tres modos de operación:
 
-  - Reinicio mixto (predeterminado): el modo predeterminado de `git reset` es un reinicio mixto. Mueve el puntero de la rama y el HEAD a la confirmación de destino mientras limpia el área de preparación. Esto es útil cuando desea desconfirmar y deshacer la preparación de sus cambios, pero mantenerlos en su directorio de trabajo.
+  - Reinicio mixto, que es el predeterminado, o sea, cuando no indica un
+    parámetro adicional: el modo predeterminado de `git reset` es un reinicio
+    mixto. Mueve el puntero de la rama y el `HEAD` al *commit* que indiques,
+    mientras limpia la *staging area* y deja tus cambios en el *working folder*.
+    Esto es útil cuando deseas eliminar un *commit* y dejar vacía la *staging
+    area*, pero mantener los cambios en el *working folder*.
 
-  Reinicio suave (--soft): un reinicio suave en Git es una forma de deshacer los cambios en su directorio de trabajo y volver a una confirmación específica mientras mantiene los cambios que ha preparado. Este modo mueve el puntero de la rama y el HEAD a la confirmación de destino, pero deja los cambios en el área de preparación. El área de preparación (también conocida como índice) en Git es un área de almacenamiento temporal para los cambios que aún no se han confirmado. Cuando realiza cambios en un archivo, los cambios se colocan primero en su directorio de trabajo. Luego, puede usar el comando git add para preparar los cambios para la próxima confirmación. Un reinicio suave se usa a menudo cuando desea "desconfirmar" sus cambios, pero mantenerlos en su área de preparación para otra confirmación.
+  - Reinicio suave, con el parámetro `--soft`: un reinicio suave en Git es una
+    forma de deshacer los cambios en tu *working folder* y volver a un *commit*
+    específico, mientras mantienes los cambios que la *staging area*. Este modo
+    mueve el puntero de la rama y el `HEAD` al *commit* que indiques, pero deja
+    los cambios en la *staging area*. Un reinicio suave se usa a menudo cuando
+    deseas deshacer un *commit*, pero mantener los cambios en la *staging area*
+    para otro *commit*.
 
-Reinicio completo (--hard): este modo mueve el puntero de la rama y el HEAD a la confirmación de destino, limpia el área de preparación y descarta cualquier cambio en el directorio de trabajo. Tenga cuidado con este modo, ya que elimina permanentemente los cambios no confirmados.
+  - Reinicio completo, con el parámetro `--hard`: este modo mueve el puntero de
+    la rama y el `HEAD` al *commit* indicado, limpia la *staging area* y
+    descarta cualquier cambio en el *working folder*. Ten cuidado con
+    este modo, ya que elimina permanentemente los cambios de los que no hayas
+    hecho *commit*.
 
-  Ejecuta el siguiente comando:
+  La tabla a continuación, resume las diferencias:
+
+  | Modo  | *Staging area*       | *Working folder*            | Uso típico |
+  |-------|----------------------|-----------------------------|------------|
+  | Mixed | Queda vacía          | Mantiene los cambios        | Deshacer *commits* recientes, pero conservar cambios para re‑seleccionar qué va al próximo *commit* |
+  | Soft  | Mantiene los cambios | Mantiene los cambios        | Rehacer *commits* recientes, manteniendo todo listo para volver a hacer *commit* |
+  | Hard  | Queda vacía          | Vuelve al *commit* indicado | Volver a un estado limpio, descartando cambios no deseados |
+
+  En todos los casos, el *commit* actual pasa a ser el que indiques al ejecutar
+  el comando.
+
+- Ejecuta los siguientes comandos:
+
   ```bash
   git reset HEAD~1
+  git status
   ```
 
+  Verás una salida similar a esta:
 
-```bash
-git reset --hard <id-del-commit-anterior>
-```
+  ```bash
+  On branch ...
+  Changes not staged for commit:
+    (use "git add <file>..." to update what will be committed)
+    (use "git restore <file>..." to discard changes in working directory)
+          modified:   src/Program/Program.cs
 
-## 4. Rebase para reorganizar *commits*
+  no changes added to commit (use "git add" and/or "git commit -a")
+  ```
 
-```bash
-git checkout feature-addition
-git rebase master
-git push -f origin feature-addition
-```
+  Esto confirma que la *staging area* está vacía, y que el archivo `Program.cs`
+  está modificado.
+
+  Examina el archivo `Program.cs`, verás que tiene el comentario que hiciste en
+  el último *commit*.
+
+  Si ejecutas `git log`, verás que el último *commit* es el de la nueva
+  operación, y no el del comentario.
+
+- Ejecuta ahora los siguientes comandos, pero `git reset` con la opción
+  `--hard`:
+
+  ```bash
+  git reset HEAD~1 --hard
+  git status
+  ```
+
+  Verás una salida similar a esta:
+
+  ```bash
+  On branch ...
+  nothing to commit, working tree clean
+  ````
+
+  Esto confirma que la *staging area* está vacía y que el *working folder* no
+  tiene modificaciones. Si examinas el archivo `Program.cs`, verás que no tiene
+  la operación agregada en este paso. Si ejecutas `git log`, verás que el último
+  *commit* es que hiciste en el paso [1. Revertir un cambio
+  incorrecto](#1-revertir-un-cambio-incorrecto) de este desafío.
+
+## 4. Usar *commit --amend* para modificar el último *commit*
+
+En este paso vamos a ver qué cómo puedes modificar el último *commit*.
+
+> [!WARNING]
+> Idealmente puedes modificar el último *commit* con el comando `commit --amend`
+> antes de enviar tus cambios al repositorio remoto con `git push`. Si el
+> *commit* ya está en el repositorio remoto, no te recomandamos usar `commit
+> --amend`.
+
+- Agrega al comienzo del método `void Main()` de la clase `Program` la impresión
+  de un mensaje en la consola con `Console.WriteLine("Demo calculadora");`. El
+  código de esa clase debería quedar así:
+
+  ```csharp
+  public static class Program
+  {
+      public static void Main()
+      {
+          Console.WriteLine("Demo calculadora");
+          Console.WriteLine(Suma.Sumar(1, 2));
+          Console.WriteLine(Resta.Restar(3, 4));
+          Console.WriteLine(Multiplicacion.Multiplicar(5, 6));
+          Console.WriteLine(Division.Dividir(7, 8));
+      }
+  }
+  ```
+
+- Agrega un nuevo archivo en la raíz de tu repositorio, con el siguiente
+  comando:
+
+  ```bash
+  echo Demo >> file.txt
+  ````
+
+  Esto crea un archivo llamado `file.txt`.
+
+- De forma intencional, a efectos de este ejercicio, haremos *commit* sólo del
+  archivo `file.txt`, pero no de los cambios en `Program.cs`. Ejecuta los
+  siguientes comandos:
+
+  ```bash
+  git add file.txt
+  git commit -m "Probando amend"
+  git status
+  ```
+
+  Verás una salida como la siguiente:
+
+  ```text
+  On branch ...
+  Changes not staged for commit:
+    (use "git add <file>..." to update what will be committed)
+    (use "git restore <file>..." to discard changes in working directory)
+          modified:   src/Program/Program.cs
+
+  no changes added to commit (use "git add" and/or "git commit -a")
+  ```
+
+  Ahora podemos querer cambiar dos cosas en el último *commit*; primero, agregar
+  el archivo que faltó; y luego, cambiar el mensaje.
+
+- Ejecuta el siguiente comando, para cambiar solamente el mensaje del último
+  *commit*:
+
+  ```bash
+  git commit --amend -m "Mensaje en la calculadora"
+  ```
+
+  Esto cambiará solamente el mensaje en el último *commit*. Puedes confirmarlo
+  haciendo `git status` para ver que `Program` sigue en el working folder y `git
+  log` para ver los mensajes de los últimos *commit*. Si estás usando `vi` como
+  editor para Git -verás `:` al final de la lista de *commits*-, recuerda usar
+  <kbd>Q</kbd> para salir.
+
+- Ejecuta ahora los siguientes comandos, para agregar el archivo `Program.cs` al
+  último *commit*:
+
+  ```bash
+  git rm --cached file.txt
+  git add src/Program/Program.cs
+  git commit --amend
+  ````
+
+  Esto agregará el archivo `Program.cs` al *commit* y quitará el archivo
+  `file.txt`. Puedes confirmarlo haciendo `git status` para ver que `file.txt`
+  sigue en el working folder y `git log` para ver los mensajes de los últimos
+  *commit*. Si estás usando `vi` como editor para Git -verás `:` al final de la
+  lista de *commits*-, recuerda usar <kbd>Q</kbd> para salir.
+
+- Borra el archivo `file.txt`. El *working folder* no debería tener ninguna
+  modificación. Puedes confirmarlo con `git status`.
