@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD033 MD041 -->
+
 <img alt="UCU" src="https://www.ucu.edu.uy/plantillas/images/logo_ucu.svg"
 width="150"/>
 
@@ -76,9 +78,7 @@ revert`](https://git-scm.com/docs/git-revert).
   git push origin <nombre-rama>
   ```
 
-  Ejecuta el programa haciendo clic en el botón
-  ![](https://intellij-icons.jetbrains.design/icons/AllIcons/expui/gutter/run_dark.svg)
-  `Run 'Program'` que aparece en la esquina superior derecha de Rider; o en la
+  Ejecuta el programa con el comando `Run | Run Without Debugging` o en la
   terminal mediante el siguiente comando:
 
   ```bash
@@ -118,8 +118,8 @@ revert`](https://git-scm.com/docs/git-revert).
   ```
 
   Este texto no aparece directamente en la consola, sino en un editor de texto
-  llamado [`vi`](https://en.wikipedia.org/wiki/Vi_(text_editor)). Git muestra la
-  lista en el editor `vi`, para que puedas recorrerla fácilmente presionando
+  llamado [`vim`](https://en.wikipedia.org/wiki/Vim_(text_editor)). Git muestra
+  la lista en el editor `vim`, para que puedas recorrerla fácilmente presionando
   <kbd>↑</kbd> y <kbd>↓</kbd> para moverte hacia el inicio o el final,
   respectivamente.
 
@@ -131,22 +131,22 @@ revert`](https://git-scm.com/docs/git-revert).
   > Es suficiente con usar los primeros 8 caracteres del `<commit-id>`, pero si
   > te da lo mismo, cópialo entero.
 
-  Una vez que haz copiado el `<commit-id>`, debes abandonar `vi` presionando
+  Una vez que haz copiado el `<commit-id>`, debes abandonar `vim` presionando
   <kbd>Esc</kbd>, luego <kbd>:</kbd> y luego <kbd>Q</kbd>, también conocido como
   *command quit*.
 
   > [!TIP]
-  > ¿No quieres usar `vi`? Puedes configurar Git para que use otro editor de
-  > texto, ¡incluso Rider!.
-  > Ejecuta el siguiente comando en la terminar para cambiar el editor de texto
-  > de `vi` a Rider:
+  > ¿No quieres usar `vim` cuando Git te pide editar mensajes de *commit*?
+  > Puedes configurar Git para que use Visual Studio Code. Para ello, ejecuta el
+  > siguiente comando en la terminal:
+  >
   > ```bash
-  > git config core.editor rider
+  > git config --global core.editor "code --wait"
   >```
 
 - Deshace los cambios usando [git revert](https://git-scm.com/docs/git-revert),
   seguido del `<commit-id>`. Este comando deshace los cambios realizados en el
-  *commit* indicado y registra un nuevo *commit*. Ejecuta el siguiene comando,
+  *commit* indicado y registra un nuevo *commit*. Ejecuta el siguiente comando,
   reemplazando `<commit-id>` por el que copiaste anteriormente, y
   `<nombre-rama>` por la rama en la que vienes trabajando.
 
@@ -155,18 +155,18 @@ revert`](https://git-scm.com/docs/git-revert).
   git push origin <nombre-rama>
   ```
 
-  Nuevamente Git abre `vi` —o Rider si lo configuraste anteriormente— para que
-  puedas editar tu mensaje para el *commit* que se registra al final del `git
-  revert`. Puedes editar el mensaje o dejar el mensaje propuesto. En caso de que
-  uses `vi`, para salir presiona <kbd>Esc</kbd>, luego <kbd>:</kbd> y luego
-  <kbd>W</kbd>, también conocido como *command write*; a continuación abadona
-  `vi` presionando <kbd>:</kbd> y luego <kbd>Q</kbd>, o *command quit*. En caso
-  de que uses Rider, simplemente guarda y cierra el archivo temporal en el que
-  editaste el mensaje.
+  Nuevamente Git abre `vim` —o Visual Studio Code si lo configuraste
+  anteriormente— para que puedas editar tu mensaje para el *commit* que sem
+  registra al final del `git revert`. Puedes editar el mensaje o dejar el
+  mensaje propuesto. En caso de que uses `vim`, para salir presiona
+  <kbd>Esc</kbd>, luego <kbd>:</kbd> y luego <kbd>W</kbd>, también conocido como
+  *command write*; a continuación abandona `vim` presionando <kbd>:</kbd> y
+  luego <kbd>Q</kbd>, o *command quit*. En caso de que uses Visual Studio Code,
+  simplemente guarda y cierra el archivo temporal en el que editaste el mensaje.
 
   Puedes examinar el código para ver que luce como antes de introducir el cambio
   erróneo. Ejecuta el programa nuevamente haciendo clic en el botón
-  ![](https://intellij-icons.jetbrains.design/icons/AllIcons/expui/gutter/run_dark.svg)
+  ![RUN](https://intellij-icons.jetbrains.design/icons/AllIcons/expui/gutter/run_dark.svg)
   `Run 'Program'` que aparece en la esquina superior derecha de Rider; o en la
   terminal mediante el siguiente comando:
 
@@ -252,7 +252,7 @@ pero ahora tendrá otros parámetros.
 
 ## 3. Hacer *reset* a un estado anterior
 
-Hay otra forma de deshacer los cambios que histe en el paso [1. Revertir un
+Hay otra forma de deshacer los cambios que hiciste en el paso [1. Revertir un
 cambio incorrecto](#1-revertir-un-cambio-incorrecto). Para mostrarlo vamos a
 hacer más cambios en nuestro programa.
 
@@ -297,7 +297,7 @@ hacer más cambios en nuestro programa.
   git commit -m "Agrego comentario"
   ```
 
-- Supongamos que elevar un número al cuadradado no es una operación para nuestra
+- Supongamos que elevar un número al cuadrado no es una operación para nuestra
   calculadora simple, sino para una calculadora científica. Tenemos que eliminar
   los dos últimos cambios. Asumamos a efectos de este ejercicio que queremos
   volver a la situación anterior a agregar estos dos últimos cambios. Podemos
@@ -312,6 +312,8 @@ hacer más cambios en nuestro programa.
   > sucesivamente. Existen otras referencias, pero con que conozcas estas
   > alcanza por ahora.
 
+  <br>
+
   > [!TIP]
   > Recuerda que `HEAD` es lo que usa Git para identificar "el *commit*  donde
   > estás trabajando ahora mismo".
@@ -325,11 +327,11 @@ hacer más cambios en nuestro programa.
     Esto es útil cuando deseas eliminar un *commit* y dejar vacía la *staging
     area*, pero mantener los cambios en el *working folder*.
 
-  - Reinicio suave, con el parámetro `--soft`: un reinicio suave en Git es una
-    forma de deshacer los cambios en tu *working folder* y volver a un *commit*
-    específico, mientras mantienes los cambios que la *staging area*. Este modo
-    mueve el puntero de la rama y el `HEAD` al *commit* que indiques, pero deja
-    los cambios en la *staging area*. Un reinicio suave se usa a menudo cuando
+  - Reinicio suave, con el parámetro `--soft`: es una forma de deshacer los
+    cambios en tu *working folder* y volver a un *commit* específico, mientras
+    mantienes los cambios que hubiera en la *staging area*. Este modo mueve el
+    puntero de la rama y el `HEAD` al *commit* que indiques, pero deja los
+    cambios en la *staging area*. Un reinicio suave se usa a menudo cuando
     deseas deshacer un *commit*, pero mantener los cambios en la *staging area*
     para otro *commit*.
 
@@ -340,6 +342,8 @@ hacer más cambios en nuestro programa.
     hecho *commit*.
 
   La tabla a continuación, resume las diferencias:
+
+  <!-- markdownlint-disable MD060 -->
 
   | Modo  | *Staging area*       | *Working folder*            | Uso típico |
   |-------|----------------------|-----------------------------|------------|
@@ -382,7 +386,7 @@ hacer más cambios en nuestro programa.
   `--hard`:
 
   ```bash
-  git reset HEAD~1 --hard
+  git reset --hard HEAD~1
   git status
   ```
 
@@ -406,7 +410,7 @@ En este paso vamos a ver qué cómo puedes modificar el último *commit*.
 > [!WARNING]
 > Idealmente debes modificar el último *commit* con el comando `commit --amend`
 > antes de enviar tus cambios al repositorio remoto con `git push`. Si el
-> *commit* ya está en el repositorio remoto, no te recomandamos usar `commit
+> *commit* ya está en el repositorio remoto, no te recomendamos usar `commit
 > --amend`.
 
 - Agrega al comienzo del método `void Main()` de la clase `Program` la impresión
@@ -419,10 +423,10 @@ En este paso vamos a ver qué cómo puedes modificar el último *commit*.
       public static void Main()
       {
           Console.WriteLine("Demo calculadora");
-          Console.WriteLine(Suma.Sumar(1, 2));
-          Console.WriteLine(Resta.Restar(3, 4));
-          Console.WriteLine(Multiplicacion.Multiplicar(5, 6));
-          Console.WriteLine(Division.Dividir(7, 8));
+          Console.WriteLine(Addition.Add(1, 2));
+          Console.WriteLine(Subtraction.Subtract(3, 4));
+          Console.WriteLine(Multiplication.Multiply(5, 6));
+          Console.WriteLine(Division.Divide(7, 8));
       }
   }
   ```
@@ -470,7 +474,7 @@ En este paso vamos a ver qué cómo puedes modificar el último *commit*.
 
   Esto cambiará solamente el mensaje en el último *commit*. Puedes confirmarlo
   haciendo `git status` para ver que `Program` sigue en el working folder y `git
-  log` para ver los mensajes de los últimos *commit*. Si estás usando `vi` como
+  log` para ver los mensajes de los últimos *commit*. Si estás usando `vim` como
   editor para Git -verás `:` al final de la lista de *commits*-, recuerda usar
   <kbd>Q</kbd> para salir.
 
@@ -483,8 +487,8 @@ En este paso vamos a ver qué cómo puedes modificar el último *commit*.
   git commit --amend
   ````
 
-  Git puede mostrar un editor de texto; si estás usando `vi` recuerda que debes
-  usar <kbd>:</kbd>, seguido de <kbd>Q</kbd>, para salir de `vi`. Podrás ver que
+  Git puede mostrar un editor de texto; si estás usando `vim` recuerda que debes
+  usar <kbd>:</kbd>, seguido de <kbd>Q</kbd>, para salir de `vim`. Podrás ver que
   el mensaje del último *commit* no ha cambiado -aunque podrías cambiar el
   mensaje en el editor de texto-,  así como el resultado del *commit*
   modificado.
@@ -492,7 +496,7 @@ En este paso vamos a ver qué cómo puedes modificar el último *commit*.
   El comando `git commit --amend` agregará el archivo `Program.cs` al *commit* y
   quitará el archivo `file.txt`. Puedes confirmarlo haciendo `git status` para
   ver que `file.txt` sigue en el working folder y `git log` para ver los
-  mensajes de los últimos *commit*. Si estás usando `vi` como editor para Git
+  mensajes de los últimos *commit*. Si estás usando `vim` como editor para Git
   -verás `:` al final de la lista de *commits*-, recuerda usar <kbd>Q</kbd> para
   salir.
 

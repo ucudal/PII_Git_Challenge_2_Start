@@ -4,35 +4,35 @@ public static class Program
 {
     public static void Main()
     {
-        Console.WriteLine(Suma.Sumar(1, 2));
-        Console.WriteLine(Resta.Restar(3, 4));
-        Console.WriteLine(Multiplicacion.Multiplicar(5, 6));
-        Console.WriteLine(Division.Dividir(7, 8));
+        Console.WriteLine(Addition.Add(4, 5));
+        Console.WriteLine(Subtraction.Subtract(10, 1));
+        Console.WriteLine(Multiplication.Multiply(3, 3));
+        Console.WriteLine(Division.Divide(18, 2));
     }
 }
 
 // Esta clase implementa la operación suma
-public class Suma
+public class Addition
 {
-    public static int Sumar(int a, int b)
+    public static int Add(int a, int b)
     {
         return a + b;
     }
 }
 
 // Esta clase implementa la operación resta
-public class Resta
+public class Subtraction
 {
-    public static int Restar(int a, int b)
+    public static int Subtract(int a, int b)
     {
         return a - b;
     }
 }
 
 // Esta clase implementa la operación multiplicación
-public class Multiplicacion
+public class Multiplication
 {
-    public static int Multiplicar(int a, int b)
+    public static int Multiply(int a, int b)
     {
         return a * b;
     }
@@ -41,7 +41,7 @@ public class Multiplicacion
 // Esta clase implementa la operación división
 public class Division
 {
-    public static double Dividir(int a, int b)
+    public static double Divide(int a, int b)
     {
         return (double)a / b;
     }
