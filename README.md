@@ -19,7 +19,8 @@ multiplicación, división). Practicarás los siguientes comandos de Git:
 [log](https://git-scm.com/docs/git-log),
 [revert](https://git-scm.com/docs/git-revert),
 [checkout](https://git-scm.com/docs/git-checkout) y
-[reset](https://git-scm.com/docs/git-reset).
+[reset](https://git-scm.com/docs/git-reset), y verás como crear tu repositorio a
+partir de éste con [fork](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo).
 
 Asumimos que has completado el [desafío #1 de
 Git](https://github.com/ucudal/PII_Git_Challenge_1_Start). Deberás continuar
@@ -33,7 +34,7 @@ En este paso veremos qué puedes hacer cuando, sin darte cuenta, haces *commit*
 de un cambio incorrecto y quieres volver atrás; con Git es posible usando [`git
 revert`](https://git-scm.com/docs/git-revert).
 
-- Primero confirma que estás en tu rama de trabajo y que no hay modificaciones
+* Primero confirma que estás en tu rama de trabajo y que no hay modificaciones
   pendientes. Ejecuta el siguiente comando:
 
   ```bash
@@ -48,15 +49,15 @@ revert`](https://git-scm.com/docs/git-revert).
   ```
 
   > Recuerda que `<nombre-rama>` es uno de los siguientes:
-  > - suma
-  > - resta
-  > - multiplica
-  > - divide
+  > * suma
+  > * resta
+  > * multiplica
+  > * divide
 
   En caso de que la rama no sea la tuya, cámbiate de rama con `git checkout`
   seguido del nombre de la rama.
 
-- Introduce un cambio incorrecto en la clase que has implementado: por ejemplo,
+* Introduce un cambio incorrecto en la clase que has implementado: por ejemplo,
   retorna `0` como resultado de la operación; si la operación fuera la suma, el
   código debería quedar así:
 
@@ -70,7 +71,7 @@ revert`](https://git-scm.com/docs/git-revert).
   }
   ```
 
-- Haz *commit* de esos cambios, ejecutando los siguientes comandos:
+* Haz *commit* de esos cambios, ejecutando los siguientes comandos:
 
   ```bash
   git add .
@@ -100,7 +101,7 @@ revert`](https://git-scm.com/docs/git-revert).
   Dependiendo del caso tienes dos opciones: arreglarlo, o ir hacia atrás; en
   este ejercicio iremos por la segunda opción.
 
-- Ejecuta [`git log`](https://git-scm.com/docs/git-log) para ver la historia de
+* Ejecuta [`git log`](https://git-scm.com/docs/git-log) para ver la historia de
   los cambios, mediante el siguiente comando:
 
   ```bash
@@ -144,7 +145,7 @@ revert`](https://git-scm.com/docs/git-revert).
   > git config --global core.editor "code --wait"
   >```
 
-- Deshace los cambios usando [git revert](https://git-scm.com/docs/git-revert),
+* Deshace los cambios usando [git revert](https://git-scm.com/docs/git-revert),
   seguido del `<commit-id>`. Este comando deshace los cambios realizados en el
   *commit* indicado y registra un nuevo *commit*. Ejecuta el siguiente comando,
   reemplazando `<commit-id>` por el que copiaste anteriormente, y
@@ -190,14 +191,14 @@ repositorio utilizando el comando [git
 checkout](https://git-scm.com/docs/git-checkout). Ya has usado este comando,
 pero ahora tendrá otros parámetros.
 
-- Utiliza [`git log`](https://git-scm.com/docs/git-log) como antes para ver la historia de
+* Utiliza [`git log`](https://git-scm.com/docs/git-log) como antes para ver la historia de
   los cambios, mediante el siguiente comando:
 
   ```bash
   git log
   ```
 
-- Copia el `<commit-id>` de uno de los primeros commits, el que dice `Initial
+* Copia el `<commit-id>` de uno de los primeros commits, el que dice `Initial
   commit`. Luego ejecuta el siguiente comando:
 
   ```bash
@@ -256,7 +257,7 @@ Hay otra forma de deshacer los cambios que hiciste en el paso [1. Revertir un
 cambio incorrecto](#1-revertir-un-cambio-incorrecto). Para mostrarlo vamos a
 hacer más cambios en nuestro programa.
 
-- Agrega la siguiente clase al final del archivo
+* Agrega la siguiente clase al final del archivo
   [Program.cs](./src/Program/Program.cs):
 
   ```csharp
@@ -277,7 +278,7 @@ hacer más cambios en nuestro programa.
   git commit -m "Nueva operación"
   ```
 
-- Agrega un comentario a esa clase, para que el código luzca así:
+* Agrega un comentario a esa clase, para que el código luzca así:
 
   ```csharp
   // Devuelve a al cuadrado
@@ -297,7 +298,7 @@ hacer más cambios en nuestro programa.
   git commit -m "Agrego comentario"
   ```
 
-- Supongamos que elevar un número al cuadrado no es una operación para nuestra
+* Supongamos que elevar un número al cuadrado no es una operación para nuestra
   calculadora simple, sino para una calculadora científica. Tenemos que eliminar
   los dos últimos cambios. Asumamos a efectos de este ejercicio que queremos
   volver a la situación anterior a agregar estos dos últimos cambios. Podemos
@@ -320,14 +321,14 @@ hacer más cambios en nuestro programa.
 
   Este comando tiene tres modos de operación:
 
-  - Reinicio mixto, que es el predeterminado, o sea, cuando no indica un
+  * Reinicio mixto, que es el predeterminado, o sea, cuando no indica un
     parámetro adicional: el modo predeterminado de `git reset` es un reinicio
     mixto. Mueve el puntero de la rama y el `HEAD` al *commit* que indiques,
     mientras limpia la *staging area* y deja tus cambios en el *working folder*.
     Esto es útil cuando deseas eliminar un *commit* y dejar vacía la *staging
     area*, pero mantener los cambios en el *working folder*.
 
-  - Reinicio suave, con el parámetro `--soft`: es una forma de deshacer los
+  * Reinicio suave, con el parámetro `--soft`: es una forma de deshacer los
     cambios en tu *working folder* y volver a un *commit* específico, mientras
     mantienes los cambios que hubiera en la *staging area*. Este modo mueve el
     puntero de la rama y el `HEAD` al *commit* que indiques, pero deja los
@@ -335,7 +336,7 @@ hacer más cambios en nuestro programa.
     deseas deshacer un *commit*, pero mantener los cambios en la *staging area*
     para otro *commit*.
 
-  - Reinicio completo, con el parámetro `--hard`: este modo mueve el puntero de
+  * Reinicio completo, con el parámetro `--hard`: este modo mueve el puntero de
     la rama y el `HEAD` al *commit* indicado, limpia la *staging area* y
     descarta cualquier cambio en el *working folder*. Ten cuidado con
     este modo, ya que elimina permanentemente los cambios de los que no hayas
@@ -354,7 +355,7 @@ hacer más cambios en nuestro programa.
   En todos los casos, el *commit* actual pasa a ser el que indiques al ejecutar
   el comando.
 
-- Ejecuta los siguientes comandos:
+* Ejecuta los siguientes comandos:
 
   ```bash
   git reset HEAD~1
@@ -382,7 +383,7 @@ hacer más cambios en nuestro programa.
   Si ejecutas `git log`, verás que el último *commit* es el de la nueva
   operación, y no el del comentario.
 
-- Ejecuta ahora los siguientes comandos, pero `git reset` con la opción
+* Ejecuta ahora los siguientes comandos, pero `git reset` con la opción
   `--hard`:
 
   ```bash
@@ -413,7 +414,7 @@ En este paso vamos a ver qué cómo puedes modificar el último *commit*.
 > *commit* ya está en el repositorio remoto, no te recomendamos usar `commit
 > --amend`.
 
-- Agrega al comienzo del método `void Main()` de la clase `Program` la impresión
+* Agrega al comienzo del método `void Main()` de la clase `Program` la impresión
   de un mensaje en la consola con `Console.WriteLine("Demo calculadora");`. El
   código de esa clase debería quedar así:
 
@@ -431,7 +432,7 @@ En este paso vamos a ver qué cómo puedes modificar el último *commit*.
   }
   ```
 
-- Agrega un nuevo archivo en la raíz de tu repositorio, con el siguiente
+* Agrega un nuevo archivo en la raíz de tu repositorio, con el siguiente
   comando:
 
   ```bash
@@ -440,7 +441,7 @@ En este paso vamos a ver qué cómo puedes modificar el último *commit*.
 
   Esto crea un archivo llamado `file.txt`.
 
-- De forma intencional, a efectos de este ejercicio, haremos *commit* sólo del
+* De forma intencional, a efectos de este ejercicio, haremos *commit* sólo del
   archivo `file.txt`, pero no de los cambios en `Program.cs`. Ejecuta los
   siguientes comandos:
 
@@ -465,7 +466,7 @@ En este paso vamos a ver qué cómo puedes modificar el último *commit*.
   Ahora podemos querer cambiar dos cosas en el último *commit*; primero, agregar
   el archivo que faltó; y luego, cambiar el mensaje.
 
-- Ejecuta el siguiente comando, para cambiar solamente el mensaje del último
+* Ejecuta el siguiente comando, para cambiar solamente el mensaje del último
   *commit*:
 
   ```bash
@@ -478,7 +479,7 @@ En este paso vamos a ver qué cómo puedes modificar el último *commit*.
   editor para Git -verás `:` al final de la lista de *commits*-, recuerda usar
   <kbd>Q</kbd> para salir.
 
-- Ejecuta ahora los siguientes comandos, para agregar el archivo `Program.cs` al
+* Ejecuta ahora los siguientes comandos, para agregar el archivo `Program.cs` al
   último *commit*, y quitar el archivo `file.txt`:
 
   ```bash
@@ -500,5 +501,161 @@ En este paso vamos a ver qué cómo puedes modificar el último *commit*.
   -verás `:` al final de la lista de *commits*-, recuerda usar <kbd>Q</kbd> para
   salir.
 
-- Borra el archivo `file.txt`. El *working folder* no debería tener ninguna
+* Borra el archivo `file.txt`. El *working folder* no debería tener ninguna
   modificación. Puedes confirmarlo con `git status`.
+
+## 5. Trabajar con un *fork* del repositorio
+
+En el [desafío Git #1](https://github.com/ucudal/PII_Git_Challenge_1_Start)
+trabajaste con un repositorio que uno de los integrantes de tu equipo había
+creado a partir de una plantilla o *template*. Otra forma muy usada en GitHub de
+crear un repo a partir de otro es mediante un *fork*: una copia de un
+repositorio que queda en tu propia organización —en tu usuario— y que puedes
+modificar sin afectar al original.
+
+Crear un repositorio mediante un *fork* es análogo a hacerlo desde una
+plantilla, pero GitHub tiene algunas funcionalidades para los repositorios
+creados mediante *fork* que no tiene para los creados desde plantillas.
+
+Una vez creado el repositorio con *fork* en GitHub, trabajarás con él igual que
+como lo has hecho en el [desafío Git #1](https://github.com/ucudal/PII_Git_Challenge_1_Start), con una funcionalidad
+adicional: podrás traer y sincronizar cambios desde el repositorio original al
+tuyo, de forma análoga a como lo haces para traer y sincronizar cambios desde de
+una rama de tu propio repositorio. A continuación verás como lograrlo.
+
+### 5.1 Crear un *fork* en GitHub
+
+En este paso vas a crear tu propio *fork* del repositorio original de este
+desafío:
+
+* Abre el repositorio original de [este
+  desafío](https://github.com/ucudal/PII_Git_Challenge_2_Start) en tu navegador.
+
+* Haz clic en el botón `Fork` que aparece arriba a la derecha.
+
+  <img src="./assets/Fork.png" alt="Fork" style="width:75%;" >
+
+* En `Owner` elige tu usuario personal.
+
+  <img src="./assets/Owner.jpg" alt="Owner" style="width:75%">
+
+* Deja el nombre que sugiere GitHub o elige otro nombre para tu copia.
+
+* Haz clic en el botón `Create fork`.
+
+  <img src="./assets/Create_Fork.jpg" alt="Create Fork" style="width:75%">
+
+Verás en el navegador tu nuevo repositorio, por ejemplo `tu-usuario/PII_Git_Challenge_2_Start`, con el mismo contenido que el original.
+
+### 5.2 Clonar tu *fork*
+
+Este paso es muy parecido al paso [**2. Clonar el
+repositorio**](https://github.com/ucudal/PII_Git_Challenge_1_Start#2-clonar-el-repositorio)
+del desafío Git #1, pero ahora la URL es la de tu *fork*.
+
+* Copia la URL HTTPS o SSH de tu *fork*.
+
+  <img src="./assets/URL.jpg" alt="URL" style="width:75%">
+
+* En la terminal, ubícate en la carpeta donde guardas tus repositorios del curso
+  y ejecuta:
+
+```bash
+git clone <url-de-tu-fork>
+cd <nombre-repositorio>
+```
+
+El comportamiento es el mismo que en el desafío Git #1: `git clone` crea una
+copia local del repositorio, y `cd` te mueve a esa carpeta.
+
+## 5.3 Configurar el remoto `upstream` al repositorio original ￼
+
+Ahora vas a decirle a tu repositorio local que, además de `origin` —tu *fork* en
+GitHub—, también conozca el repositorio original como `upstream`. Esto te
+permitirá traer cambios del original a tu *fork* más adelante.
+
+Ejecuta los siguientes comandos en la terminal, dentro de la carpeta del
+repositorio:
+
+```bash
+git remote add upstream "https://github.com/ucudal/PII_Proyecto_2026_2_Start.git"
+git remote -v
+```
+
+Deberías ver algo similar a esto:
+
+```bash
+origin   <url-de-tu-fork> (fetch)
+origin   <url-de-tu-fork> (push)
+upstream https://github.com/ucudal/PII_Proyecto_2026_2_Start.git (fetch)
+upstream https://github.com/ucudal/PII_Proyecto_2026_2_Start.git (push)
+```
+
+> [!NOTE]
+> El último parámetro del comando `git remote add upstream`, que es la URL del
+> repositorio original, es
+> `https://github.com/ucudal/PII_Proyecto_2026_2_Start.git` en este desafío,
+> pero puede ser la URL de cualquier repositorio.
+
+## 5.4 Trabajar en ramas de tu *fork*
+
+A partir de aquí trabajas igual que en el desafío Git #1, pero siempre contra tu
+fork.
+
+Puedes crear ramas con `git checkout -b <nombre-rama>`, usar `git add`, `git
+commit` y `git push origin <nombre-rama>`, tal como hiciste en los pasos
+[3](https://github.com/ucudal/PII_Git_Challenge_1_Start#3-crear-ramas-para-cada-uno),
+[4](https://github.com/ucudal/PII_Git_Challenge_1_Start#4-implementar-la-operación),
+[5](https://github.com/ucudal/PII_Git_Challenge_1_Start#5-agregar-y-hacer-commit-de-los-cambios)
+y
+[7](https://github.com/ucudal/PII_Git_Challenge_1_Start#7-enviar-los-cambios-al-repositorio-remoto)
+del desafío Git #1, pero ahora en el *fork* de este repositorio del desafío #2.
+
+Puedes seguir usando `git merge` entre ramas como viste en el paso
+[8](https://github.com/ucudal/PII_Git_Challenge_1_Start#8-obtener-cambios-y-hacer-merge),
+y obtener cambios y hacer *merge* del desafío Git #1, sólo que en este desafío
+no vas a enviar cambios al repositorio original, sino que todo queda en tu fork.
+
+# 5.5 Actualizar tu *fork* con cambios del repositorio original ￼
+
+Aunque en este curso no modificaremos el repositorio original de este desafío,
+en un proyecto real el repositorio original puede seguir recibiendo cambios. Tu
+*fork* puede quedar desactualizado respecto a ese *upstream*.
+
+La forma de sincronizar tu *fork* con los cambios del original es muy similar a lo
+que hiciste en el desafío Git #1 al obtener cambios de `main` y hacer *merge* de
+ramas.
+
+1. Obtener los últimos cambios del repositorio original, que llamaremos
+   `upstream`:
+
+    ```bash
+    git fetch upstream
+    ```
+
+2. Cambiar a la rama principal de tu fork, que típicamente es `main`:
+
+    ```bash
+    git checkout main
+    ```
+
+3. Combinar en tu rama `main` los cambios de la rama principal del repositorio original:
+
+    ```bash
+    git merge upstream/main
+    ```
+
+    La idea es parecida al `git merge <nombre-rama>` que usaste en el paso
+    [8](https://github.com/ucudal/PII_Git_Challenge_1_Start#8-obtener-cambios-y-hacer-merge)
+    del desafío Git #1, sólo que ahora estás combinando tu `main` con la `main`
+    del repositorio original en lugar de con una rama tuya.
+
+4. Enviar la rama actualizada a tu *fork* en GitHub:
+
+    ```bash
+    git push origin main
+    ```
+
+Con esto, tu *fork* queda sincronizado con el repositorio original: tu rama
+`main` local y la `main` de tu fork en GitHub tienen los mismos cambios que la
+`main` del repositorio `upstream`.
