@@ -585,14 +585,14 @@ Deberías ver algo similar a esto:
 ```bash
 origin   <url-de-tu-fork> (fetch)
 origin   <url-de-tu-fork> (push)
-upstream https://github.com/ucudal/PII_Proyecto_2026_2_Start.git (fetch)
-upstream https://github.com/ucudal/PII_Proyecto_2026_2_Start.git (push)
+upstream https://github.com/ucudal/PII_Git_Challenge_2_Start.git (fetch)
+upstream https://github.com/ucudal/PII_Git_Challenge_2_Start.git (push)
 ```
 
 > [!NOTE]
 > El último parámetro del comando `git remote add upstream`, que es la URL del
 > repositorio original, es
-> `https://github.com/ucudal/PII_Proyecto_2026_2_Start.git` en este desafío,
+> `https://github.com/ucudal/PII_Git_Challenge_2_Start.git` en este desafío,
 > pero puede ser la URL de cualquier repositorio.
 
 ## 5.4 Trabajar en ramas de tu *fork*
