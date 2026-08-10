@@ -576,7 +576,7 @@ Ejecuta los siguientes comandos en la terminal, dentro de la carpeta del
 repositorio:
 
 ```bash
-git remote add upstream https://github.com/ucudal/PII_Git_Challenge_2_Start.git
+git remote add upstream "https://github.com/ucudal/PII_Git_Challenge_2_Start.git"
 git remote -v
 ```
 
